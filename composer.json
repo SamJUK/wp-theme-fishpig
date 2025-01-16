@@ -1,0 +1,30 @@
+{
+  "name": "samjuk/wp-theme-fishpig",
+  "version": "3.29.1",
+  "description": "Fishpig Theme for integrating Wordpress with Magento 2",
+  "type": "wordpress-theme",
+  "keywords": [
+    "wordpress",
+    "theme",
+    "fishpig",
+    "magento",
+    "magento-2"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ben Tideswell",
+      "email": "ben@fishpig.com",
+      "homepage": "https://fishpig.com/magento-2-wordpress-integration",
+      "role": "Developer"
+    },
+    {
+      "name": "Sam James",
+      "email": "sam@samdjames.uk",
+      "homepage": "https://www.samdjames.uk",
+      "role": "Operations"
+    }
+  ],
+  "require": {},
+  "require-dev": {}
+}
