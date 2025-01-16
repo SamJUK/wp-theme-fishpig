@@ -1,0 +1,55 @@
+name: Build Package
+
+on:
+  workflow_call:
+    inputs:
+      tag:
+        type: string
+        description: "Tag to Build"
+  workflow_dispatch:
+    inputs:
+      tag:
+        type: string
+        description: "Tag to Build"
+
+jobs:
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build Package
+        id: build
+        uses: ./.github/actions/build-package
+        with:
+          TAG: ${{ inputs.tag }}
+
+      - name: Git Operations
+        env:
+          TAG: ${{ inputs.tag }}
+          HASH: ${{ steps.build.outputs.hash }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git switch -C build
+          git add .
+          git commit -a -m "bot: released build artifacts for tag ${{ env.TAG }} (${{ env.HASH }})"
+          git tag ${{ env.TAG }}
+          git push origin tag ${{ env.TAG }}
+          gh workflow run .github/workflows/release.yml --ref ${{ env.TAG }}
+
+      - name: Summarise the Build
+        env:
+          TAG: ${{ inputs.tag }}
+          HASH: ${{ steps.build.outputs.hash }}
+        run: |
+          echo "### 🐷 Fishpig Theme Build Results" >> $GITHUB_STEP_SUMMARY
+          echo "**Version:** $TAG" >> $GITHUB_STEP_SUMMARY
+          echo "**Build Hash:** $HASH" >> $GITHUB_STEP_SUMMARY

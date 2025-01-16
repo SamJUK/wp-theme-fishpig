@@ -1,0 +1,38 @@
+name: Watch for new Packages
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '30 5 * * *'
+
+jobs:
+  watch:
+    name: Watcher
+    runs-on: ubuntu-latest
+    outputs:
+      tags: ${{ steps.missing_tags.outputs.tags }}
+    steps:
+      - name: Gather Missing Tags
+        id: missing_tags
+        env:
+          upstream: "bentideswell/magento2-wordpress-integration"
+          downstream: "SamJUK/wp-theme-fishpig"
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          fetch_tags() { gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" /repos/$1/tags --slurp --paginate | jq -r '.[] | .[] | .name' | sort -V; }
+          TAGS=$(grep -vxf <(fetch_tags $downstream) <(fetch_tags $upstream) | tail -n3 | jq -R | jq --slurp | jq -rc)
+          echo "tags=$TAGS" >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: [watch]
+    name: Build
+    permissions:
+      contents: write
+      actions: write
+    if: "!contains(needs.watch.outputs.tags, '[]')"
+    strategy:
+      matrix:
+        tag: ${{ fromJSON(needs.watch.outputs.tags) }}
+    uses: ./.github/workflows/build-packages.yml
+    with:
+      tag: ${{ matrix.tag }}
