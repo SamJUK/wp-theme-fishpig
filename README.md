@@ -4,7 +4,7 @@
 [![GitHub Release](https://img.shields.io/github/v/release/SamJUK/wp-theme-fishpig?label=Latest%20Release&logo=github)](https://github.com/SamJUK/wp-theme-fishpig/releases)
 [![Watcher Workflow Status](https://github.com/samjuk/wp-theme-fishpig/actions/workflows/watcher.yml/badge.svg?)](https://github.com/SamJUK/wp-theme-fishpig/actions/workflows/watcher.yml)
 
-The purpose of this repository is to build the FishPig wordpress theme from source. Generate a composer manifest and publish the package to Packagist.
+The purpose of this repository is to build the [FishPig wordpress](https://github.com/bentideswell/magento2-wordpress-integration) theme from source. Generate a composer manifest and publish the package to Packagist.
 
 Allowing for the Fishpig theme to be integrated as a dependency when managing Wordpress by Composer.
 

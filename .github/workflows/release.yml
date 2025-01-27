@@ -16,3 +16,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Release
         uses: softprops/action-gh-release@v2
+        with:
+          body: |
+            [View upstream changes](https://github.com/bentideswell/magento2-wordpress-integration/compare/${{ github.ref_name }}~1..${{ github.ref_name }})
+          append_body: true
+
