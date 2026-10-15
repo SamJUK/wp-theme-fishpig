@@ -9,6 +9,7 @@ jobs:
   watch:
     name: Watcher
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     outputs:
       tags: ${{ steps.missing_tags.outputs.tags }}
     steps:
