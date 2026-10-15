@@ -10,7 +10,7 @@
         "magento",
         "magento-2"
     ],
-    "license": "MIT",
+    "license": "GPL-2.0-or-later",
     "authors": [
         {
             "name": "Ben Tideswell",

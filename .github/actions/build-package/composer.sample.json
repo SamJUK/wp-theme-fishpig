@@ -4,7 +4,7 @@
     "description": "Fishpig Theme for integrating Wordpress with Magento 2",
     "type": "wordpress-theme",
     "keywords": ["wordpress", "theme", "fishpig", "magento", "magento-2"],
-    "license": "MIT",
+    "license": "GPL-2.0-or-later",
     "authors": [
       {
         "name": "Ben Tideswell",

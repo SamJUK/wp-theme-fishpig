@@ -46,3 +46,9 @@ git fetch origin tag 3.0.1 3.1.1 --no-tags
 git fetch origin tag 3.1.1 --no-tags
 git diff 3.0.1 3.1.1
 ```
+
+## License
+
+The theme is FishPig's and is licensed under GPL-2.0-or-later, as its `style.css` header says. The build tooling in this repository uses the same licence.
+
+Packages up to 3.32.6 were labelled MIT by mistake. The theme inside them was always GPL-2.0-or-later.
