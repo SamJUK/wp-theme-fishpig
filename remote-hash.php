@@ -1,0 +1,6 @@
+<?php
+/**
+ *
+ */
+$remoteHash = 'c640e16dd2189555aa56de214859a22d';
+return $remoteHash;
